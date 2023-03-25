@@ -2,8 +2,6 @@ package com.example.testretrofitone;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.SharedPreferences;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
     }
 
     private void loadAnimePages(){
-        pagesList = findViewById(R.id.pages_list);
+        pagesList = findViewById(R.id.viewpager);
 
         ArrayList<Fragment> pages = new ArrayList<>();
         pages.add(0,new ListAnimeFragment());

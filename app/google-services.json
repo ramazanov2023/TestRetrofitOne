@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "753792100687",
+    "project_id": "testretrofitone",
+    "storage_bucket": "testretrofitone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753792100687:android:7b1a46d29fa8bba1c1bd3a",
+        "android_client_info": {
+          "package_name": "com.example.testretrofitone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753792100687-03q38fm5dgf1jn80b5gin1uapv0gkg0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZtzIKAHsjibg_2QB4IJy8mjQQbQdTk7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753792100687-03q38fm5dgf1jn80b5gin1uapv0gkg0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
