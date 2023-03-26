@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TestRetrofitOne</string>
+
+    <string-array name="anime_titles">
+        <item>List</item>
+        <item>Anime</item>
+        <item>Characters</item>
+        <item>Similar</item>
+    </string-array>
+
 </resources>

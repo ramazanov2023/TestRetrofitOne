@@ -1,13 +1,18 @@
 package com.example.testretrofitone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
@@ -17,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
     SharedPreferences pref;
     FrameLayout frameAuth;
     ViewPager2 pagesList;
+    TabLayout tabLayout;
+    String[] tabTitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +64,12 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
 
     private void loadAnimePages(){
         pagesList = findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.tab_layout);
+        tabTitles = getResources().getStringArray(R.array.anime_titles);
 
-        ArrayList<Fragment> pages = new ArrayList<>();
+
+
+        ArrayList < Fragment > pages = new ArrayList<>();
         pages.add(0,new ListAnimeFragment());
         pages.add(1,new AnimeFragment());
         pages.add(2,new CharactersAnimeFragment());
@@ -66,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
 
         AnimePagesAdapter adapter = new AnimePagesAdapter(getSupportFragmentManager(),getLifecycle(),pages);
         pagesList.setAdapter(adapter);
+
+        new TabLayoutMediator(tabLayout, pagesList, true, (tab, position) -> {
+            tab.setText(tabTitles[position]);
+            Log.e("tabnull","onConfigureTab - " + tab.getText());
+        }).attach();
 
     }
 }

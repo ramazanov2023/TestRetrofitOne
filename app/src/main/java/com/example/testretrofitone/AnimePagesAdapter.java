@@ -28,4 +28,7 @@ public class AnimePagesAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return fragments.size();
     }
+
+
+
 }
