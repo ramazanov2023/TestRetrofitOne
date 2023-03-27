@@ -78,9 +78,16 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
         AnimePagesAdapter adapter = new AnimePagesAdapter(getSupportFragmentManager(),getLifecycle(),pages);
         pagesList.setAdapter(adapter);
 
-        new TabLayoutMediator(tabLayout, pagesList, true, (tab, position) -> {
-            tab.setText(tabTitles[position]);
-            Log.e("tabnull","onConfigureTab - " + tab.getText());
+//        new TabLayoutMediator(tabLayout, pagesList, true, (tab, position) -> {
+//            tab.setText(tabTitles[position]);
+//            Log.e("tabnull","onConfigureTab - " + tab.getText());
+//        }).attach();
+
+        new TabLayoutMediator(tabLayout, pagesList, true, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(tabTitles[position]);
+            }
         }).attach();
 
     }

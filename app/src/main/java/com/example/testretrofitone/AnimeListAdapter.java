@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class AnimeListAdapter extends RecyclerView.Adapter<AnimeListAdapter.Holder> {
@@ -35,6 +37,9 @@ public class AnimeListAdapter extends RecyclerView.Adapter<AnimeListAdapter.Hold
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         Anime singleAnime = body.get(position);
         holder.nameAnime.setText(singleAnime.name);
+
+        String posterUrl = Api.BASE_URL + singleAnime.image.original;
+        Picasso.get().load(posterUrl).into(holder.poster);
         holder.poster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
