@@ -34,19 +34,20 @@ public class ListAnimeFragment extends Fragment {
 
         runRetrofit();
 
+
     }
 
     private void runRetrofit() {
-        Call<List<Anime>> call = RetrofitClient.getInstance().getMyApi().getDynamicEndPoints(20);
-        call.enqueue(new Callback<List<Anime>>() {
+        Call<List<AnimeList>> call = RetrofitClient.getInstance().getMyApi().getDynamicEndPoints(20);
+        call.enqueue(new Callback<List<AnimeList>>() {
             @Override
-            public void onResponse(Call<List<Anime>> call, Response<List<Anime>> response) {
+            public void onResponse(Call<List<AnimeList>> call, Response<List<AnimeList>> response) {
                 recycler.setLayoutManager(new GridLayoutManager(getContext(),3));
                 recycler.setAdapter(new AnimeListAdapter(getContext(),response.body()));
             }
 
             @Override
-            public void onFailure(Call<List<Anime>> call, Throwable t) {
+            public void onFailure(Call<List<AnimeList>> call, Throwable t) {
                 Toast.makeText(getContext(), "An error has occured", Toast.LENGTH_LONG).show();
             }
         });

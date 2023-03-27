@@ -3,11 +3,14 @@ package com.example.testretrofitone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -15,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AnimeInterface{
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
     ViewPager2 pagesList;
     TabLayout tabLayout;
     String[] tabTitles;
+    AnimePagesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,16 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
                 loadAnimePages();
 
                 frameAuth.setVisibility(View.GONE);
+            case AnimeFragment.ACTION_OPEN_ANIME_PAGE:
+                List<Fragment> frg = getSupportFragmentManager().getFragments();
+                Log.e("anime"," frg - " + frg);
+                Log.e("anime"," frgSize - " + frg.size());
+                if(frg.size()>1) {
+                    AnimeFragment anime =(AnimeFragment) frg.get(1);
+                    anime.updateAnimePage();
+                }
+                pagesList.setCurrentItem(1);
+
         }
     }
 
@@ -75,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
         pages.add(2,new CharactersAnimeFragment());
         pages.add(3,new SimilarAnimeFragment());
 
-        AnimePagesAdapter adapter = new AnimePagesAdapter(getSupportFragmentManager(),getLifecycle(),pages);
+        adapter = new AnimePagesAdapter(getSupportFragmentManager(),getLifecycle(),pages);
         pagesList.setAdapter(adapter);
 
 //        new TabLayoutMediator(tabLayout, pagesList, true, (tab, position) -> {
@@ -89,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements AnimeInterface{
                 tab.setText(tabTitles[position]);
             }
         }).attach();
+
+
 
     }
 }
